@@ -142,10 +142,10 @@ string += '    Y_I_INBUF_'+str(i+1)+'_net;\n'
 
 f.write(string);
 	
-######  INBUF instantiations ######
+######  INBUFs replaced with assignments #######
 string = '\n'
 for i in range (0, inp_number):
-	string +='    INBUF I_INBUF_'+str(i)+' (.PAD(PAD_I['+str(i)+']),' +'.Y(Y_I_INBUF_'+str(i)+'_net));\n'	
+	string +='    assign Y_I_INBUF_'+str(i)+'_net = PAD_I['+str(i)+'];\n'	
 f.write(string);	
 
 ######  VCC GND instantiations ######
