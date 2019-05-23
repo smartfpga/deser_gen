@@ -503,14 +503,6 @@ f.write (string)
 ###### Component instances ######
 
 string='\n'
-string+= '//--------INBUF\n'
-string+='INBUF CLK_0(\n'
-string+='        .PAD ( RX_CLK ),\n'
-string+='        .Y   ( CLK_0_Y )\n' 
-string+='        );\n'
-f.write (string)
-
-string='\n'
 string+= '//--------CLKINT\n'
 string+='CLKINT CLKINT_0(\n'
 string+='        .A ( PF_CLK_DIV_FIFO_CLK_DIV_OUT ),\n'
@@ -521,7 +513,7 @@ f.write (string)
 string='\n'
 string+='//--------HS_IO_CLK\n'
 string+='HS_IO_CLK HS_IO_CLK_CASCADED(\n'
-string+='        .A ( CLK_0_Y ),\n'
+string+='        .A ( RX_CLK ),\n'
 string+='        .Y ( HS_IO_CLK_CASCADED_Y )\n' 
 string+='        );\n'
 f.write (string)
@@ -894,22 +886,23 @@ string+= '----------------------------------------------------------------------
 string+='NAME_HERE : ides_'+str(inp_number)+'\n'
 string+='   port map(\n'
 string+='    -- Inputs\n'
-string+='    ARST_N                  =>   ,\n'
-string+='    DELAY_LINE_DIRECTION    =>   ,\n'
-string+='    DELAY_LINE_LOAD         =>   ,\n'
-string+='    DELAY_LINE_MOVE         =>   ,\n'
-string+='    EYE_MONITOR_CLEAR_FLAGS =>   ,\n'
-string+='    EYE_MONITOR_WIDTH       =>   ,\n'
-string+='    HS_IO_CLK_PAUSE         =>   ,\n'
-string+='    RXD                     =>   ,\n'
-string+='    RX_CLK                  =>   ,\n'
+string+='    ARST_N                  => ,\n'
+string+='    DELAY_LINE_DIRECTION    => ,\n'
+string+='    DELAY_LINE_LOAD         => ,\n'
+string+='    DELAY_LINE_MOVE         => ,\n'
+string+='    EYE_MONITOR_CLEAR_FLAGS => ,\n'
+string+='    EYE_MONITOR_WIDTH       => ,\n'
+string+='    HS_IO_CLK_PAUSE         => ,\n'
+string+='    RXD                     => ,\n'
+string+='    RX_CLK                  => ,\n'
 string+='    -- Outputs \n'
-string+='    DELAY_LINE_OUT_OF_RANGE =>   ,\n'
-string+='    EYE_MONITOR_EARLY       =>   ,\n'
-string+='    EYE_MONITOR_LATE        =>   ,\n'
+string+='    DELAY_LINE_OUT_OF_RANGE => ,\n'
+string+='    EYE_MONITOR_EARLY       => ,\n'
+string+='    EYE_MONITOR_LATE        => ,\n'
 for i in range (0,inp_number):
-	string+='    L'+str(i)+'_RXD_DATA             =>   ,\n'
-string+='    RX_CLK_G                 =>   );\n\n'  
+	string+='    L'+str(i)+'_RXD_DATA             => ,\n'
+string+='    RX_CLK_G                 =>   \n'
+string+='    );\n\n'  
 
 
 f.write (string)
