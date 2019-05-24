@@ -133,16 +133,16 @@ f.write(string);
 
 
 ######  Signals descr ######
-string='\nwire GND_net, VCC_net, \n'
+string='\nwire GND_net, '
 
 for i in range (0, inp_number-1):
-	string += '    Y_I_INBUF_'+str(i)+'_net, \n'
+	string += 'Y_I_INBUF_'+str(i)+'_net, '
 	
-string += '    Y_I_INBUF_'+str(i+1)+'_net;\n'
+string += 'Y_I_INBUF_'+str(i+1)+'_net;\n'
 
 f.write(string);
 	
-######  INBUFs replaced with assignments #######
+######  input INBUFs replaced with assignments #######
 string = '\n'
 for i in range (0, inp_number):
 	string +='    assign Y_I_INBUF_'+str(i)+'_net = PAD_I['+str(i)+'];\n'	
@@ -150,7 +150,6 @@ f.write(string);
 
 ######  VCC GND instantiations ######
 string = '\n'
-string+='    VCC vcc_inst (.Y(VCC_net));\n'	
 string+='    GND gnd_inst (.Y(GND_net));\n'	
 f.write(string);	
 
@@ -215,15 +214,15 @@ for i in range (0, inp_number):
 	string+='            .AL_N(GND_net),\n' 
 	string+='            .OEFF_LAT_N(GND_net),\n' 
 	string+='            .OEFF_SD_N(GND_net),\n' 
-	string+='            .OEFF_AD_N(),\n' 
+	string+='            .OEFF_AD_N(GND_net),\n' 
 	string+='            .INFF_LAT_N(GND_net),\n' 
 	string+='            .INFF_SD_N(GND_net),\n' 
 	string+='            .INFF_AD_N(GND_net),\n' 	
 	string+='            .OUTFF_LAT_N(GND_net),\n' 
 	string+='            .OUTFF_SD_N(GND_net),\n' 
-	string+='            .OUTFF_AD_N(),\n' 
+	string+='            .OUTFF_AD_N(GND_net),\n' 
 	string+='            .RX_P(Y_I_INBUF_'+str(i)+'_net),\n' 
-	string+='            .RX_N(),\n' 
+	string+='            .RX_N(GND_net),\n' 
 	string+='            .TX_DATA_9(GND_net),\n'
 	string+='            .TX_DATA_8(GND_net),\n' 
 	string+='            .ARST_N(ARST_N),\n' 
@@ -347,7 +346,6 @@ string += 'output        RX_CLK_G;\n\n'
 
 ######  Nets ######
 string =  'wire           ARST_N;\n'
-string += 'wire           CLK_0_Y;\n'
 for i in range (0, inp_number):
 	string += 'wire   ['+str(i)+':'+str(i)+'] DELAY_LINE_DIRECTION_slice_'+str(i)+';\n'
 
